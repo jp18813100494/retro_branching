@@ -1,3 +1,10 @@
+
+import os
+import sys
+import argparse
+sys.path.append(os.getcwd())
+
+
 from retro_branching.utils import check_if_network_params_equal, seed_stochastic_modules_globally
 from retro_branching.networks import BipartiteGCN
 from retro_branching.agents import DQNAgent
@@ -8,9 +15,6 @@ import ecole
 import torch 
 
 import random
-
-import os
-import argparse
 
 import hydra
 from hydra.core.hydra_config import HydraConfig

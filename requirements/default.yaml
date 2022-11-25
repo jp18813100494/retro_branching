@@ -1,4 +1,4 @@
-name: rlgnn
+# name: rlgnn
 channels:
   - pytorch
   - pyg
