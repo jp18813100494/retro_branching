@@ -232,31 +232,31 @@ def run_parallel_episode(agent,
         intrinsic_extrinsic_combiner,
         ecole_seed,
         reproducible_episodes,
-                         episode_id, 
-                         _buffer, 
-                         device, 
-                         observation_function,
-                         information_function,
-                         reward_function,
-                         scip_params,
-                         instances,
-                         train_predictor=True,
-                         debug_mode=False):
+        episode_id, 
+        _buffer, 
+        device, 
+        observation_function,
+        information_function,
+        reward_function,
+        scip_params,
+        instances,
+        train_predictor=True,
+        debug_mode=False):
     return _run_episode(agent=agent,
                         extrinsic_reward=extrinsic_reward,
                         intrinsic_reward=intrinsic_reward,
                         intrinsic_extrinsic_combiner=intrinsic_extrinsic_combiner,
                         ecole_seed=ecole_seed,
-                                                        reproducible_episodes=reproducible_episodes,
-                                                           episode_id=episode_id, 
-                                                           _buffer=_buffer,
-                                                           device=device,
-                                                           observation_function=observation_function,
-                                                           information_function=information_function,
-                                                           reward_function=reward_function,
-                                                           scip_params=scip_params,
-                                                           instances=instances,
-                                                           debug_mode=debug_mode)
+                        reproducible_episodes=reproducible_episodes,
+                        episode_id=episode_id, 
+                        _buffer=_buffer,
+                        device=device,
+                        observation_function=observation_function,
+                        information_function=information_function,
+                        reward_function=reward_function,
+                        scip_params=scip_params,
+                        instances=instances,
+                        debug_mode=debug_mode)
 
 def run_sequential_episode(agent,
         extrinsic_reward,
@@ -373,11 +373,6 @@ def _run_episode(agent,
     episode_stats['episode_run_time'] = end_t - start_t
 
     return episode_id, _buffer, episode_stats
-
-
-
-
-
 
 
 class RolloutBuffer:
@@ -508,10 +503,10 @@ class PPOLearner(Learner):
             # gather experiences sequentially
             for episode_id in episode_to_buffer.keys():
                 _, episode_to_buffer[episode_id], episode_stats = run_sequential_episode(agent=self.agent,
-                        extrinsic_reward=self.extrinsic_reward,
-                        intrinsic_reward=self.intrinsic_reward,
-                        intrinsic_extrinsic_combiner=self.intrinsic_extrinsic_combiner,
-                        ecole_seed=self.ecole_seed,
+                                                                            extrinsic_reward=self.extrinsic_reward,
+                                                                            intrinsic_reward=self.intrinsic_reward,
+                                                                            intrinsic_extrinsic_combiner=self.intrinsic_extrinsic_combiner,
+                                                                            ecole_seed=self.ecole_seed,
                                                                            reproducible_episodes=self.reproducible_episodes,
                                                                            episode_id=episode_id,
                                                                            _buffer=episode_to_buffer[episode_id],
@@ -547,10 +542,10 @@ class PPOLearner(Learner):
                         episode_id = random.choice(episode_ids)
                         episode_ids.remove(episode_id)
                         result_ids.append(run_parallel_episode.remote(agent=self.agent,
-                            extrinsic_reward=self.extrinsic_reward,
-                            intrinsic_reward=self.intrinsic_reward,
-                            intrinsic_extrinsic_combiner=self.intrinsic_extrinsic_combiner,
-                            ecole_seed=self.ecole_seed,
+                                                                            extrinsic_reward=self.extrinsic_reward,
+                                                                            intrinsic_reward=self.intrinsic_reward,
+                                                                            intrinsic_extrinsic_combiner=self.intrinsic_extrinsic_combiner,
+                                                                            ecole_seed=self.ecole_seed,
                                                                            reproducible_episodes=self.reproducible_episodes,
                                                                            episode_id=episode_id,
                                                                            _buffer=episode_to_buffer[episode_id],
